@@ -52,8 +52,8 @@ fun DetalleView (
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.tertiary
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                 ),
                 title = { Text(text = "Cuidados") },
                 navigationIcon = {
@@ -76,7 +76,7 @@ fun DetalleView (
             when (state) {
                 DetalleEstado.Cargando -> Cargando()
                 is DetalleEstado.Error -> Text(text = state.mensaje)
-                is DetalleEstado.Resultado -> Contenido( state.cuidado )
+                is DetalleEstado.Resultado -> Contenido(state.planta)
                 DetalleEstado.Vacio -> Text(text = "")
             }
         }

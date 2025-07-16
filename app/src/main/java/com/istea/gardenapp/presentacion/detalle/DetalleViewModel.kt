@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.istea.gardenapp.repository.Cuidado
 import com.istea.gardenapp.repository.Repository
 import com.istea.gardenapp.router.Router
 import kotlinx.coroutines.launch
@@ -33,8 +34,11 @@ class DetalleViewModel(
         uiState = DetalleEstado.Cargando
         viewModelScope.launch {
             try {
-                val planta = repositorio.getCuidados(plantaId = plantaId)
-                uiState = DetalleEstado.Resultado(cuidado = repositorio.cuidadoLirio)
+                val planta = repositorio.getPlantas()
+                val plantaSeleccionada = planta.find { it.plantaId == plantaId }
+                if (plantaSeleccionada != null) {
+                    uiState = DetalleEstado.Resultado(planta = plantaSeleccionada)
+                }
             } catch (e: Exception) {
                 uiState = DetalleEstado.Error(mensaje = "Error al cargar el contenido")
             }
