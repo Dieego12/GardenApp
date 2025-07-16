@@ -111,6 +111,16 @@ fun Contenido(cuidado: Cuidado){
 }
 
 @Composable
+fun Contenido(planta: Planta) {
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(text = planta.nombre, style = MaterialTheme.typography.titleLarge)
+        Text(text = planta.descripcion, style = MaterialTheme.typography.bodyMedium)
+        Text(text = "Temperatura: ${planta.temperatura}")
+        Text(text = "Sol: ${planta.sol}")
+    }
+}
+
+@Composable
 fun DescripcionView(planta: Planta){
     Card(
         colors = CardDefaults.cardColors(
